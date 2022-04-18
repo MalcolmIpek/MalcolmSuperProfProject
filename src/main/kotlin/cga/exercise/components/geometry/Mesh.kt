@@ -74,6 +74,7 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
 
         //3)
         GL30.glBindVertexArray(0)
+        //------------------------------------------------------
 
 
         // todo: generate IDs
