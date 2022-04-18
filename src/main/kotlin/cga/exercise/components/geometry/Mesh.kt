@@ -24,31 +24,56 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
 
     init {
         // todo: place your code here
+        //1) Erstellen und Binden eines VAO. Jedes VBO und IBO, die Sie in der Sequenz binden, wird dem
+        //aktuellen VAO zugeordnet.
+        //2) Erstellen und Binden von Vertex- und Indexbuern.
+        //3) Füllen Sie die Vertex- und Indexbuer mit den entsprechenden Daten.
+        //4) Aktivieren und denieren Sie die jeweiligen VertexAttribute.
+        //5) Danach sollte alles gelöst werden (unbind), um versehentliche Änderungen an den Buern und
+        //VAO zu vermeiden. Denken Sie daran, das VAO zuerst zu lösen.
+
+        //1)
         vao = GL30.glGenVertexArrays()
         GL30.glBindVertexArray(vao)
-        //Erstellen Sie ein neues VBO und binden Sie es.
+
+        //2)
         vbo = GL15.glGenBuffers()
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo)
-        //Speichern Sie die Daten in das VBO.
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexdata, GL15.GL_STATIC_DRAW)
-        //Erstellen Sie ein neues IBO und binden Sie es.
-        ibo = GL15.glGenBuffers()
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo)
-        //Speichern Sie die Daten in das IBO.
-        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexdata, GL15.GL_STATIC_DRAW)
-        //Binden Sie die Attribute.
+
+        //3)
         for ((index, attribute) in attributes.withIndex()) {
             GL20.glVertexAttribPointer(index, attribute.n, GL11.GL_FLOAT, false, attribute.stride, attribute.offset.toLong())
             GL20.glEnableVertexAttribArray(index)
         }
-        //Binden Sie das IBO zurück.
-        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0)
-        //Binden Sie das VBO zurück.
+
+        //4)
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0)
-        //Binden Sie den VAO zurück.
+
+        //5)
         GL30.glBindVertexArray(0)
-        //Speichern Sie die Anzahl der Indices.
+
+        //6)
+        ibo = GL15.glGenBuffers()
+        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo)
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexdata, GL15.GL_STATIC_DRAW)
+
+        //7)
         indexcount = indexdata.size
+
+
+        //1) Binden Sie das VAO.
+        //2) Zeichnen Sie die Elemente.
+        //3) Lösen der Bindung, um versehentliche Änderungen am VAO zu vermeiden.
+
+        //1)
+        GL30.glBindVertexArray(vao)
+
+        //2)
+        GL11.glDrawElements(GL11.GL_TRIANGLES, indexcount, GL11.GL_UNSIGNED_INT, 0)
+
+        //3)
+        GL30.glBindVertexArray(0)
 
 
         // todo: generate IDs
