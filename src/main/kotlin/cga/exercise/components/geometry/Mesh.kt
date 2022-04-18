@@ -61,6 +61,7 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
         //7)
         indexcount = indexdata.size
 
+        //---------------------------------------------------------------------------------------------
 
         //1) Binden Sie das VAO.
         //2) Zeichnen Sie die Elemente.
@@ -74,7 +75,7 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
 
         //3)
         GL30.glBindVertexArray(0)
-        //------------------------------------------------------
+        //---------------------------------------------------------------------------------------------
 
 
         // todo: generate IDs
