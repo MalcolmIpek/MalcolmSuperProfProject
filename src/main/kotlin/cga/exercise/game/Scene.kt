@@ -43,20 +43,12 @@ class Scene(private val window: GameWindow) {
         )
 
         val attributes = arrayOf(
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
-
-
-
-
-
-
+               VertexAttribute(3, GL_FLOAT, 6*4, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, 6*4, 12 * 4),
+               VertexAttribute(3, GL_FLOAT, 6*4, 18 * 4),
+               VertexAttribute(3, GL_FLOAT, 6*4, 24 * 4),
+               VertexAttribute(3, GL_FLOAT, 6*4, 32 * 4),
+               VertexAttribute(3, GL_FLOAT, 6*4, 38 * 4),
 
             )
 
