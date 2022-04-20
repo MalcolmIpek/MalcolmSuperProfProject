@@ -38,26 +38,25 @@ class Scene(private val window: GameWindow) {
 
         val indices = intArrayOf(
             0, 1, 2,    //erstes Dreieck
-            0, 2, 4,    //zweites Dreieck
-            4, 2, 3    //drittes Dreieck
+            0, 2, 4,    //zweites Dreieck*/
+           4, 2, 3    //drittes Dreieck
         )
 
         val attributes = arrayOf(
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 0),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 3 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 6 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 9 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 12 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 15 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 18 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 21 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 24 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 27 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 30 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 33 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 36 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 39 * 4),
-            VertexAttribute(3, GL_FLOAT, 3 * 4, 42 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+               VertexAttribute(3, GL_FLOAT, GL_FALSE, 6 * 4),
+
+
+
+
+
+
 
             )
 

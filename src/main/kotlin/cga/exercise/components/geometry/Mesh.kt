@@ -18,14 +18,13 @@ import org.lwjgl.opengl.GL30
  * Created by Fabian on 16.09.2017.
  */
 class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<VertexAttribute>) {
-    //private data
     private var vao = 0
     private var vbo = 0
     private var ibo = 0
-    private var indexcount = 0
+    private var index = 0
 
     init {
-        indexcount = indexdata.size
+        index = indexdata.size
         vao = glGenVertexArrays()
         glBindVertexArray(vao)
 
@@ -44,13 +43,9 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexdata, GL_STATIC_DRAW)
     }
 
-
-    /**
-     * renders the mesh
-     */
     fun render() {
         glBindVertexArray(vao)
-        glDrawElements(GL_TRIANGLES, indexcount, GL_UNSIGNED_INT, 0)
+        glDrawElements(GL_TRIANGLES, index, GL_UNSIGNED_INT, 0)
         glBindVertexArray(0)
     }
 

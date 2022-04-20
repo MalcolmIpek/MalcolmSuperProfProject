@@ -8,9 +8,9 @@ package cga.exercise.components.geometry
  * @param offset    Offset in bytes from the beginning of the vertex to the location of this attribute data
  */
 data class VertexAttribute(
-        var n: Int,
-        var type: Int,
-        var stride: Int,
-        var offset: Int
+        val n: Int,
+        val type: Int,
+        val stride: Int,
+        val offset: Int
 )
 
