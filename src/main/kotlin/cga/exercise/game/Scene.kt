@@ -67,9 +67,8 @@ class Scene(private val window: GameWindow) {
     fun render(dt: Float, t: Float) {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
         //implement every object into the render pipeline
-        mesh.render()
         staticShader.use()
-
+        mesh.render()
         //render the mesh
 
 
