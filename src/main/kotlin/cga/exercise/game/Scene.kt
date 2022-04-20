@@ -27,6 +27,7 @@ class Scene(private val window: GameWindow) {
  */
 
 
+        //these are vertices for a cube based this time on the 5x example from the exercise
         val vertices: FloatArray = floatArrayOf(
             // Position               // Color
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
@@ -39,19 +40,22 @@ class Scene(private val window: GameWindow) {
         val indices = intArrayOf(
             0, 1, 2,    //erstes Dreieck
             0, 2, 4,    //zweites Dreieck*/
-           4, 2, 3    //drittes Dreieck
+            4, 2, 3    //drittes Dreieck
         )
 
+
+        /*create a mesh with the given vertices and indices these vertex attributes are based on a 6x4 vertex with all information included not a 3x4 without the colors
+        implements the creation of the mesh with the 5x attributes and not 10 times (color and position spitted)
+* */
         val attributes = arrayOf(
-               VertexAttribute(3, GL_FLOAT, 6*4, 6 * 4),
-               VertexAttribute(3, GL_FLOAT, 6*4, 12 * 4),
-               VertexAttribute(3, GL_FLOAT, 6*4, 18 * 4),
-               VertexAttribute(3, GL_FLOAT, 6*4, 24 * 4),
-               VertexAttribute(3, GL_FLOAT, 6*4, 32 * 4),
-               VertexAttribute(3, GL_FLOAT, 6*4, 38 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 6 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 12 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 18 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 24 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 32 * 4),
+        )
 
-            )
-
+        //generate the mesh
         mesh = Mesh(vertices, indices, attributes)
 
 
@@ -67,11 +71,9 @@ class Scene(private val window: GameWindow) {
     fun render(dt: Float, t: Float) {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
         //implement every object into the render pipeline
-        mesh.render()
         staticShader.use()
-
+        mesh.render()
         //render the mesh
-
 
     }
 
