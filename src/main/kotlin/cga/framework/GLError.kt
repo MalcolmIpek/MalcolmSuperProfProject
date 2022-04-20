@@ -49,7 +49,7 @@ object GLError {
             val stackElement = Thread.currentThread().stackTrace[3]
             val stuff = "An OpenGL error occured in File: " + stackElement.fileName + ", Line: " + stackElement.lineNumber
             ex.append(stuff)
-            if(appendError) ex.append(", " + error)
+            if(appendError) ex.append(", $error")
             ex.append("\n")
         }
         whatToDoWithErrorSB(ex, errorCode)

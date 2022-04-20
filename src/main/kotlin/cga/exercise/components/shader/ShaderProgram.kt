@@ -4,7 +4,6 @@ import org.joml.*
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL20
-import org.lwjgl.opengl.GL30
 import java.nio.FloatBuffer
 import java.nio.file.Files
 import java.nio.file.Paths
