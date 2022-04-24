@@ -30,17 +30,28 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
 
         vbo = glGenBuffers()
         glBindBuffer(GL_ARRAY_BUFFER, vbo)
-        glBufferData(GL_ARRAY_BUFFER, vertexdata, GL_STATIC_DRAW)
+        glBufferData(GL_ARRAY_BUFFER, vertexdata, GL_STATIC_DRAW) //static zeichne einmal und nie wieder
 
         for (i in attributes.indices) {
-            glVertexAttribPointer(i, attributes[i].n, attributes[i].type, false, attributes[i].stride, attributes[i].offset.toLong())
+            glVertexAttribPointer(i, attributes[i].n, attributes[i].type, true, attributes[i].stride, attributes[i].offset.toLong())
             glEnableVertexAttribArray(i)
         }
+        glBindVertexArray(vao)
 
 
         ibo = glGenBuffers()
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexdata, GL_STATIC_DRAW)
+        //bind the ibo and vbo to the vao
+        glBindVertexArray(vao)
+
+        //unbind the vao
+        glBindVertexArray(0)
+        // unbind the vbo
+        glBindBuffer(GL_ARRAY_BUFFER, 0)
+        // unbind the ibo
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+
     }
 
     fun render() {
