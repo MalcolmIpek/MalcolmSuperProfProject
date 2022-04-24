@@ -5,6 +5,7 @@ import cga.exercise.components.geometry.VertexAttribute
 import cga.exercise.components.shader.ShaderProgram
 import cga.framework.GLError
 import cga.framework.GameWindow
+import cga.framework.OBJLoader
 import org.lwjgl.opengl.GL11.*
 
 
@@ -91,6 +92,19 @@ class Scene(private val window: GameWindow) {
         //glCullFace(GL_BACK); GLError.checkThrow()
         glEnable(GL_DEPTH_TEST); GLError.checkThrow()
         glDepthFunc(GL_LESS); GLError.checkThrow()
+
+        glEnable(GL_CULL_FACE)
+        glFrontFace(GL_CCW)
+        glCullFace(GL_BACK)
+
+        var obj = OBJLoader.loadOBJ("assets/models/cube.obj") //a
+        val meshlist = obj.objects[0].meshes //b
+
+        for (mesh in meshlist) {
+            var vertAttributes = mesh.vertices.map { VertexAttribute(3, GL_FLOAT, 8 * 4, 8 * 4) }
+            (mesh as Mesh).render() //e casting und rendern
+        }//<- c + d
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f); GLError.checkThrow() //e background color
     }
 
     fun render(dt: Float, t: Float) {
