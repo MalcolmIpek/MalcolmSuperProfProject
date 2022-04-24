@@ -84,6 +84,8 @@ class Scene(private val window: GameWindow) {
 
         mesh = Mesh(vertices, indices, attributes)
 
+        var nameMesh = Mesh(verticesName, indicesName, attributesName)
+        nameMesh.render()
 
         //initial opengl state
         glClearColor(0.6f, 1.0f, 1.0f, 1.0f); GLError.checkThrow()
