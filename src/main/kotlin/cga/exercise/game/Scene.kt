@@ -29,11 +29,23 @@ class Scene(private val window: GameWindow) {
 
         val vertices: FloatArray = floatArrayOf(
             // Position               // Color
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
-            0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
-            0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-            0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-            -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f
+        )
+
+        val verticesName: FloatArray = floatArrayOf(
+            // Position               // Color
+            0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            2.0f, 2.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            2.0f, 2.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            3.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            4.0f, 2.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            5.0f, 2.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            7.0f, 2.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            6.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            5.0f, 2.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            7.0f, 2.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            6.0f, 3.0f, 0.0f, 1.0f, 0.0f, 0.0f,
         )
 
         val indices = intArrayOf(
@@ -42,15 +54,32 @@ class Scene(private val window: GameWindow) {
             4, 2, 3    //drittes Dreieck
         )
 
+        val indicesName = intArrayOf(
+            0, 1, 2, 2, 3, 4, 5, 6, 7, 5, 6, 8
+        )
+
         val attributes = arrayOf(
             VertexAttribute(3, GL_FLOAT, 6 * 4, 6 * 4),
             VertexAttribute(3, GL_FLOAT, 6 * 4, 12 * 4),
             VertexAttribute(3, GL_FLOAT, 6 * 4, 18 * 4),
             VertexAttribute(3, GL_FLOAT, 6 * 4, 24 * 4),
             VertexAttribute(3, GL_FLOAT, 6 * 4, 32 * 4),
-            VertexAttribute(3, GL_FLOAT, 6 * 4, 38 * 4),
+        )
 
-            )
+        val attributesName = arrayOf(
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 6 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 12 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 18 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 24 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 32 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 38 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 44 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 50 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 56 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 62 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 68 * 4),
+            VertexAttribute(3, GL_FLOAT, 6 * 4, 74 * 4)
+        )
 
         mesh = Mesh(vertices, indices, attributes)
 
