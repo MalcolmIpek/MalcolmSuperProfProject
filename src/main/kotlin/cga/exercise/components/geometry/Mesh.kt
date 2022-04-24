@@ -51,13 +51,12 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
         glBindBuffer(GL_ARRAY_BUFFER, 0)
         // unbind the ibo
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
-
     }
 
     fun render() {
         glBindVertexArray(vao)
-        glDrawElements(GL_TRIANGLES, index, GL_UNSIGNED_INT, 0)
-        glBindVertexArray(0)
+        glDrawElements(GL_TRIANGLES, index, GL_UNSIGNED_INT, index.toLong()) //muss ins long gecasted werden da wir einen long fordern und n int geben
+        glBindVertexArray(0) // zeigen den buffer auf die 0 bedeutet, dass wir ihn in den 0 array binden der nicht existiert heißt wir ziehen den stecker / unbinden
     }
 
     /**
