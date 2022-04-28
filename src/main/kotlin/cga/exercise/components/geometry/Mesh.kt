@@ -1,11 +1,12 @@
 package cga.exercise.components.geometry
 
-import org.lwjgl.opengl.ARBVertexArrayObject.glBindVertexArray
-import org.lwjgl.opengl.ARBVertexArrayObject.glGenVertexArrays
-import org.lwjgl.opengl.GL15.*
+import org.lwjgl.opengl.GL11
+import org.lwjgl.opengl.GL15
 import org.lwjgl.opengl.GL20.glEnableVertexAttribArray
 import org.lwjgl.opengl.GL20.glVertexAttribPointer
 import org.lwjgl.opengl.GL30
+
+
 
 /**
  * Creates a Mesh object from vertexdata, intexdata and a given set of vertex attributes
@@ -21,50 +22,57 @@ class Mesh(vertexdata: FloatArray, indexdata: IntArray, attributes: Array<Vertex
     private var vao = 0
     private var vbo = 0
     private var ibo = 0
-    private var index = 0
+    private var indexcount = 0
 
     init {
-        index = indexdata.size
-        vao = glGenVertexArrays()
-        glBindVertexArray(vao)
+        // todo: place your code here
+        // todo: generate IDs
 
-        vbo = glGenBuffers()
-        glBindBuffer(GL_ARRAY_BUFFER, vbo)
-        glBufferData(GL_ARRAY_BUFFER, vertexdata, GL_STATIC_DRAW) //static zeichne einmal und nie wieder
+        indexcount = indexdata.size
+        vao = GL30.glGenVertexArrays()
+        vbo = GL15.glGenBuffers()
+        ibo = GL15.glGenBuffers()
+
+
+        // todo: bind your objects
+        GL30.glBindVertexArray(vao)
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo)
+        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, ibo)
+
+        // todo: upload your mesh data
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexdata, GL15.GL_STATIC_DRAW)
 
         for (i in attributes.indices) {
-            glVertexAttribPointer(i, attributes[i].n, attributes[i].type, true, attributes[i].stride, attributes[i].offset.toLong())
+            glVertexAttribPointer(
+                i, attributes[i].n, attributes[i].type, false, attributes[i].stride, attributes[i].offset.toLong()
+            )
             glEnableVertexAttribArray(i)
+
         }
-        glBindVertexArray(vao)
+
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexdata, GL15.GL_STATIC_DRAW) // Vertex und Indexbuffer mit Daten füllen
 
 
-        ibo = glGenBuffers()
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo)
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexdata, GL_STATIC_DRAW)
-        //bind the ibo and vbo to the vao
-        glBindVertexArray(vao)
-
-        //unbind the vao
-        glBindVertexArray(0)
-        // unbind the vbo
-        glBindBuffer(GL_ARRAY_BUFFER, 0)
-        // unbind the ibo
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
     }
 
-    fun render() {
-        glBindVertexArray(vao)
-        glDrawElements(GL_TRIANGLES, index, GL_UNSIGNED_INT, index.toLong()) //muss ins long gecastet werden da wir einen long fordern und n int geben
-        glBindVertexArray(0) // zeigen den buffer auf die 0 bedeutet, dass wir ihn in den 0 array binden der nicht existiert heißt wir ziehen den stecker / unbinden
-    }
 
     /**
-     * Deletes the previously allocated OpenGL objects for this mesh
+     * renders the mesh
      */
+    fun render() {
+        // todo: place your code here
+        // call the rendering method every frame
+
+        GL30.glBindVertexArray(vao)
+        GL11.glDrawElements(GL11.GL_TRIANGLES, indexcount, GL11.GL_UNSIGNED_INT, 0)
+        GL30.glBindVertexArray(0)
+    }
+
+
     fun cleanup() {
-        if (ibo != 0) glDeleteBuffers(ibo)
-        if (vbo != 0) glDeleteBuffers(vbo)
+
+        if (ibo != 0) GL15.glDeleteBuffers(ibo)
+        if (vbo != 0) GL15.glDeleteBuffers(vbo)
         if (vao != 0) GL30.glDeleteVertexArrays(vao)
     }
 }
